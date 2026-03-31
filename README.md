@@ -6,9 +6,13 @@ AutoArchitect is an AI-powered system that automatically designs, trains, and de
 
 ---
 
-## Architecture
+## Components
 
-![AutoArchitect Architecture](docs/architecture/AutoAI-architecture.png)
+![AutoArchitect Components](docs/architecture/ComponentsDiagram.png)
+
+## Full Architecture
+
+![AutoArchitect Architecture](docs/architecture/AutoAI-full-architecture.png)
 
 ---
 
