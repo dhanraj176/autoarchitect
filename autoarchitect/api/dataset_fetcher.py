@@ -109,7 +109,7 @@ DATASET_REGISTRY = [
     {
         "keywords":    ["garbage", "trash", "waste", "dumping", "litter",
                         "illegal dump", "oakland", "street"],
-        "hf_name":     "garythung/trash-classification",
+        "hf_name":     "harmesh95/garbage-type-classification",
         "hf_name_alt": None,
         "domain":      "image",
         "classes":     ["clean", "garbage"],

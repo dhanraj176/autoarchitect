@@ -29,12 +29,12 @@ VERIFIED_REGISTRY = {
     "pavement":             "Programmer-RD-AI/road-issues-detection-dataset",
     "infrastructure":       "Programmer-RD-AI/road-issues-detection-dataset",
     # Waste / dumping
-    "garbage":              "garythung/trash-classification",
-    "trash":                "garythung/trash-classification",
-    "waste":                "garythung/trash-classification",
-    "dumping":              "garythung/trash-classification",
-    "litter":               "garythung/trash-classification",
-    "recycling":            "garythung/trash-classification",
+    "garbage":              "harmesh95/garbage-type-classification",
+    "trash":                "harmesh95/garbage-type-classification",
+    "waste":                "harmesh95/garbage-type-classification",
+    "dumping":              "harmesh95/garbage-type-classification",
+    "litter":               "harmesh95/garbage-type-classification",
+    "recycling":            "harmesh95/garbage-type-classification",
     # Fire / safety
     "fire":                 "pyronear/openfire",
     "smoke":                "pyronear/openfire",
