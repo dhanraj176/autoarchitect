@@ -9,6 +9,7 @@ import sys
 import os
 import io
 import zipfile
+import tempfile
 from dotenv import load_dotenv
 from api.self_trainer import self_train
 
@@ -190,7 +191,8 @@ def detect():
     try:
         img_bytes = base64.b64decode(img_data.split(',')[1])
         img       = Image.open(io.BytesIO(img_bytes)).convert('RGB')
-        tmp_path  = os.path.join(os.path.dirname(__file__), 'tmp_detect.jpg')
+        with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as tmp:
+            tmp_path = tmp.name
         img.save(tmp_path)
         results = run_yolo_detection(tmp_path)
         if os.path.exists(tmp_path):

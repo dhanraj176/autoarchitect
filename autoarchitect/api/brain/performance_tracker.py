@@ -60,10 +60,10 @@ class PerformanceTracker:
                        if h.get("success"))
         avg_acc   = round(
             sum(h.get("accuracy", 0) for h in self.history)
-            / total, 1)
+            / total, 1) if total > 0 else 0.0
         avg_time  = round(
             sum(h.get("time_taken", 0) for h in self.history)
-            / total, 1)
+            / total, 1) if total > 0 else 0.0
 
         # Agent frequency
         agent_counts = {}

@@ -180,7 +180,7 @@ class TopologyDesigner:
     """
 
     def __init__(self):
-        self.data_dir     = Path("brain_data")
+        self.data_dir     = Path(__file__).parent.parent.parent / "brain_data"
         self.data_dir.mkdir(exist_ok=True)
         self.topology_log = self.data_dir / "topology_history.json"
         self.history      = self._load_history()

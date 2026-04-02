@@ -8,6 +8,7 @@
 import os
 import io
 import time
+import threading
 import requests
 from api.analyzer        import ProblemAnalyzer
 from api.workflow_engine import WorkflowEngine
@@ -38,6 +39,7 @@ class AutoArchitectOrchestrator:
         self.analyzer        = ProblemAnalyzer()
         self.workflow        = WorkflowEngine()
         self._agents         = {}
+        self._agents_lock    = threading.Lock()
         self._last_embedding = None
         self.groq_key        = groq_api_key or os.getenv("GROQ_API_KEY", "")
 
@@ -663,25 +665,27 @@ class AutoArchitectOrchestrator:
     # ─────────────────────────────────────────────────────────────────────
     def _wake_agent(self, domain: str, problem: str = ""):
         key = f"{domain}_{problem[:20]}" if problem else domain
-        if key not in self._agents:
-            print(f"  ↑ Loading {domain} agent for: {problem[:30]}")
-            from api.agents.agent_factory import get_factory
-            factory = get_factory()
-            agent   = factory.create(
-                problem = problem or domain,
-                domain  = domain,
-            )
-            self._agents[key] = agent
-        return self._agents[key]
+        with self._agents_lock:
+            if key not in self._agents:
+                print(f"  ↑ Loading {domain} agent for: {problem[:30]}")
+                from api.agents.agent_factory import get_factory
+                factory = get_factory()
+                agent   = factory.create(
+                    problem = problem or domain,
+                    domain  = domain,
+                )
+                self._agents[key] = agent
+            return self._agents[key]
 
     def _sleep_agent(self, domain: str, problem: str = ""):
-       key = f"{domain}_{problem[:20]}" if problem else domain
-       if key in self._agents:
-         print(f"  ↓ Unloading {domain} agent...")
-         del self._agents[key]
-       elif domain in self._agents:
-         print(f"  ↓ Unloading {domain} agent...")
-         del self._agents[domain]
+        key = f"{domain}_{problem[:20]}" if problem else domain
+        with self._agents_lock:
+            if key in self._agents:
+                print(f"  ↓ Unloading {domain} agent...")
+                del self._agents[key]
+            elif domain in self._agents:
+                print(f"  ↓ Unloading {domain} agent...")
+                del self._agents[domain]
 
 
     def _wake_evaluator(self):

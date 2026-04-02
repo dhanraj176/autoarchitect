@@ -383,13 +383,13 @@ class {class_name}:
         conf  = result.get("confidence", 0)
         label = result.get("label", "unknown")
         if conf > 0.85:
-            print(f"   🚨 [{self.name.upper()}] HIGH: {{label}} ({{conf:.0%}})")
+            print(f"   🚨 [{{self.name.upper()}}] HIGH: {{label}} ({{conf:.0%}})")
             result["action"] = "alert"
         elif conf > 0.6:
-            print(f"   ⚠️  [{self.name.upper()}] MEDIUM: {{label}} ({{conf:.0%}})")
+            print(f"   ⚠️  [{{self.name.upper()}}] MEDIUM: {{label}} ({{conf:.0%}})")
             result["action"] = "log"
         else:
-            print(f"   ✅ [{self.name.upper()}] LOW: {{label}} ({{conf:.0%}})")
+            print(f"   ✅ [{{self.name.upper()}}] LOW: {{label}} ({{conf:.0%}})")
             result["action"] = "monitor"
         return result
 
@@ -403,10 +403,10 @@ class {class_name}:
 
     def learn(self):
         if len(self.memory) < 20:
-            print(f"   [{self.name}] Need {{20 - len(self.memory)}} more examples")
+            print(f"   [{{self.name}}] Need {{20 - len(self.memory)}} more examples")
             return
-        print(f"   [{self.name}] Retraining on {{len(self.memory)}} examples...")
-        print(f"   [{self.name}] ✅ Retrain complete")
+        print(f"   [{{self.name}}] Retraining on {{len(self.memory)}} examples...")
+        print(f"   [{{self.name}}] ✅ Retrain complete")
 
     def status(self) -> dict:
         return {{
@@ -533,13 +533,13 @@ class {class_name}:
         conf  = result.get("confidence", 0)
         label = result.get("label", "unknown")
         if conf > 0.85:
-            print(f"   🚨 [{self.name.upper()}] HIGH: {{label}} ({{conf:.0%}})")
+            print(f"   🚨 [{{self.name.upper()}}] HIGH: {{label}} ({{conf:.0%}})")
             result["action"] = "alert"
         elif conf > 0.6:
-            print(f"   ⚠️  [{self.name.upper()}] MEDIUM: {{label}} ({{conf:.0%}})")
+            print(f"   ⚠️  [{{self.name.upper()}}] MEDIUM: {{label}} ({{conf:.0%}})")
             result["action"] = "log"
         else:
-            print(f"   ✅ [{self.name.upper()}] LOW: {{label}} ({{conf:.0%}})")
+            print(f"   ✅ [{{self.name.upper()}}] LOW: {{label}} ({{conf:.0%}})")
             result["action"] = "monitor"
         return result
 
@@ -553,10 +553,10 @@ class {class_name}:
 
     def learn(self):
         if len(self.memory) < 20:
-            print(f"   [{self.name}] Need {{20 - len(self.memory)}} more examples")
+            print(f"   [{{self.name}}] Need {{20 - len(self.memory)}} more examples")
             return
-        print(f"   [{self.name}] Retraining on {{len(self.memory)}} examples...")
-        print(f"   [{self.name}] ✅ Retrain complete")
+        print(f"   [{{self.name}}] Retraining on {{len(self.memory)}} examples...")
+        print(f"   [{{self.name}}] ✅ Retrain complete")
 
     def status(self) -> dict:
         return {{

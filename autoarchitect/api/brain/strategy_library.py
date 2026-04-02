@@ -228,7 +228,7 @@ class StrategyLibrary:
             "agents":         best["strategy"]["agents"],
             "model":          best["strategy"]["model"],
             "dataset":        best["strategy"]["dataset"],
-            "confidence":     best["score"],
+            "confidence":     min(best["score"], 1.0),
             "avg_accuracy":   best["strategy"]["avg_accuracy"],
             "all_candidates": [
                 {"name": s["name"], "score": s["score"]}
@@ -300,7 +300,7 @@ class StrategyLibrary:
             "best_strategy":    max(
                 self.strategies.items(),
                 key=lambda x: x[1].get("avg_accuracy", 0)
-            )[0] if self.strategies else "none",
+            )[0] if self.strategies else None,
             "strategies": {
                 name: {
                     "agents":       s["agents"],
